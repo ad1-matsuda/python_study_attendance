@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -16,7 +16,7 @@ class SubmitAttendance(models.Model):
         (4, 'リモート'),
     )
 
-    staff = models.ForeignKey(get_user_model(), verbose_name="スタッフ", on_delete=models.CASCADE, default=None)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     in_out = models.IntegerField(verbose_name='IN/OUT', choices=IN_OUT_STATUS, default=None)
     time = models.TimeField(verbose_name="打刻時間")
     date = models.DateField(verbose_name='打刻日')

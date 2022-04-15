@@ -1,18 +1,26 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import SubmitAttendanceForm
-from datetime import datetime
 from .controller import ResultController
+from .models import SubmitAttendance
 
 
 # Create your views here.
 class IndexView(LoginRequiredMixin, View):
     def get(self, request):
         form = SubmitAttendanceForm
+        attendance_status = SubmitAttendance.objects.all()
+        for status in attendance_status:
+            print(status.user)
+            print(status.in_out)
+            print(status.time)
+            print(status.date)
         context = {
             'form': form,
             "user": request.user,
+            "status": attendance_status
         }
         return render(request, 'attendance/index.html', context)
 
@@ -31,7 +39,7 @@ class ResultView(View):
 
         obj = form.save(commit=False)
         obj.in_out = request.POST["in_out"]
-        obj.staff = request.user
+        obj.user = request.user
         obj.date = datetime.now().date()
         obj.time = datetime.now().time()
         obj.save()
