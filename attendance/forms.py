@@ -6,4 +6,4 @@ class SubmitAttendanceForm(forms.ModelForm):
 
     class Meta:
         model = SubmitAttendance
-        fields = ('in_out',)
+        fields = ('in_out', "staff")

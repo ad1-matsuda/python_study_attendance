@@ -17,14 +17,14 @@ class ResultController():
         time_text = time.strftime('%m月%d日%H時%M分%S秒')
 
         # user名の取得
-        user_name = request.user.username
+        # user_name = request.user.username
         # 出退勤状態の取得
         in_out = request.POST["in_out"]
 
         # 出退勤状態に応じてコメントを作成
         if in_out == '1':
-            comment = user_name+"さんが"+time_text+"に出勤しました。今日も頑張りましょう！"
+            comment = time_text+"に出勤しました。今日も頑張りましょう！"
         else:
-            comment = user_name+"さんが"+time_text+"に退勤しました。お疲れ様でした(^-^)!"
+            comment = time_text+"に退勤しました。お疲れ様でした(^-^)!"
 
         return comment
