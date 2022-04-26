@@ -5,3 +5,4 @@ attendance/__pycache__
 accounts/__pycache__
 attendance/migrations
 attendance/migrations/__pycache__/0001_initial.cpython-36.pyc
+accounts/migrations/__pycache__/
